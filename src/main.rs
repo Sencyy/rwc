@@ -33,7 +33,35 @@ fn main() {
     let mut args: Vec<String> = env::args().collect();
     let p: String;
     let file: String;
-    if args[1].starts_with("-") {
+    if args[1].starts_with("--") {
+
+        p = args[2].clone();
+        file = fs::read_to_string(&p).expect("Path should be a valid file");
+
+        
+        match args[1].as_str() {
+            "--lines" => print_lines = true,
+            "--words" => print_words = true,
+            "--bytes" => print_bytes = true,
+            "--chars" => print_chars = true,
+
+            _ => {
+                eprintln!("Uknown argument {}", args[1]);
+                process::exit(1);
+            }
+        }
+    
+        
+        if print_lines { print!("{} ", count_lines(&file)) }
+        if print_words { print!("{} ", count_words(&file)) }
+        if print_bytes { print!("{} ", count_bytes(&file)) }
+        if print_chars { print!("{} ", count_chars(&file)) }
+
+        println!("{p}");
+
+    
+
+    } else if args[1].starts_with("-") {
         p = args[2].clone();
         file = fs::read_to_string(&p).expect("Path should be a valid file");
 
@@ -56,7 +84,6 @@ fn main() {
                 }
             }
         }
-
         // Here we are printing the results of our last for loop
         
         if print_lines { print!("{} ", count_lines(&file)) }

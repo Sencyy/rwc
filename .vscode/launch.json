@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/target/debug/rwc",
-            "args": ["-m", "${workspaceFolder}/src/main.rs"],
+            "args": ["${workspaceFolder}/src/main.rs"],
             "cwd": "${workspaceFolder}"
         }
     ]
