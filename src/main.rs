@@ -50,14 +50,6 @@ fn main() {
                 process::exit(1);
             }
         }
-    
-        
-        if print_lines { print!("{} ", count_lines(&file)) }
-        if print_words { print!("{} ", count_words(&file)) }
-        if print_bytes { print!("{} ", count_bytes(&file)) }
-        if print_chars { print!("{} ", count_chars(&file)) }
-
-        println!("{p}");
 
     
 
@@ -84,21 +76,22 @@ fn main() {
                 }
             }
         }
-        // Here we are printing the results of our last for loop
-        
-        if print_lines { print!("{} ", count_lines(&file)) }
-        if print_words { print!("{} ", count_words(&file)) }
-        if print_bytes { print!("{} ", count_bytes(&file)) }
-        if print_chars { print!("{} ", count_chars(&file)) }
 
-        println!("{p}");
 
     } else {
         p = args[1].clone();
 
         file = fs::read_to_string(&p).expect("Path should be a valid file");
-        println!("{} {} {} {}", count_lines(&file), count_words(&file), count_bytes(&file), p);
-        // println!("{} {}", count_lines(&file), p)
+        print_lines = true; print_chars = true; print_words = true;
     }
+
+    // Here we are printing the results of our last for loop
+
+    if print_lines { print!("{} ", count_lines(&file)) }
+        if print_words { print!("{} ", count_words(&file)) }
+        if print_bytes { print!("{} ", count_bytes(&file)) }
+        if print_chars { print!("{} ", count_chars(&file)) }
+
+        println!("{p}");
 
 }
